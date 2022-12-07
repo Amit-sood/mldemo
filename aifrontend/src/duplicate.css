@@ -409,10 +409,13 @@
 
 
 #popup-root .popup-overlay .popup-content .table-responsive th, #popup-root .popup-overlay .popup-content .table-responsive td {
-  border: 1px solid #efefef;
+  border: 1px solid #bfbfbf;
   padding: 5px 15px;
   font-size: 14px;
   font-weight: 400;
+  background-color: #fff;
+  color: #313e5b;
+
 }
 
 #popup-root .popup-overlay .popup-content .table-responsive thead th{
