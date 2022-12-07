@@ -4,6 +4,7 @@ import * as XLSX from "xlsx";
 import Popup from 'reactjs-popup';
 import Table from 'react-bootstrap/Table'
 import { useEffect } from "react";
+import {  Backdrop ,CircularProgress } from '@mui/material';
 // import ReactTable from "react-table";  
 
 
@@ -451,6 +452,9 @@ newObj.forEach(obj=>{
           </table>
         </div>
       </div>
+  <Backdrop  sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={isLoading} >
+          <CircularProgress color="inherit" />
+      </Backdrop>
     </>
   );
 }
