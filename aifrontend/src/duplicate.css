@@ -307,6 +307,12 @@
   background-color: #f5f9fc;
 }
 
+.rwd-table tr td span{
+  border-bottom: 1px solid blue;
+  color: blue;
+  cursor: pointer;
+}
+
 .rwd-table tr:nth-child(odd):not(:first-child) {
   background-color: #ebf3f9;
 }
