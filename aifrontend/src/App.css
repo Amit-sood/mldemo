@@ -812,7 +812,7 @@ section {
 .sentimentAnalysis textarea{
   display: flex;
   width: 100%;
-  border: 1px solid #ff4800;
+  border: 1px solid #ced4da;
   border-radius: 5px;
   height: 100px;
   margin-bottom: 15px;
