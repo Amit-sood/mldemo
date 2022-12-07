@@ -201,7 +201,7 @@ newObj.forEach(obj=>{
                 
                 }>
 
-                  <option value={""}>Selct Full Name</option>
+                  <option value={""}>Select Full Name</option>
                   {data.map((option) => (
                     <option value={option["Full Name"]}>
                       {option["Full Name"]}
@@ -210,7 +210,7 @@ newObj.forEach(obj=>{
                 </select>
                 <select onChange={e => setFirstName(e.target.value) }>
 
-                  <option value={""}>Selct First Name</option>
+                  <option value={""}>Select First Name</option>
 
                   {data.map((option) => (
                     <option value={option["First Name"]}>
@@ -221,7 +221,7 @@ newObj.forEach(obj=>{
 
                 <select onChange={e => setLastName(e.target.value) }>
 
-                  <option value={""}>Selct Last Name</option>
+                  <option value={""}>Select Last Name</option>
 
                   {data.map((option) => (
                     <option value={option["Last Name"]}>
@@ -241,7 +241,7 @@ newObj.forEach(obj=>{
 
                 <select onChange={e => setPhone(e.target.value) }>
 
-                  <option value={""}>Selct Phone</option>
+                  <option value={""}>Select Phone</option>
 
                   {data.map((option) => (
                     <option value={option["Phone number"]}>
@@ -252,7 +252,7 @@ newObj.forEach(obj=>{
 
                 <select onChange={e => setPostCode(e.target.value) }>
 
-                  <option value={""}>Selct Postcode</option>
+                  <option value={""}>Select Postcode</option>
 
                   {data.map((option) => (
                     <option value={option["Postcode"]}>
@@ -338,10 +338,10 @@ newObj.forEach(obj=>{
             modal nested scroll
               
      position="right center">
-       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+       <div ><Table  stripped bordered responsive variant="dark" size="sm">
   <thead>
     <tr>
-      <th>Data</th>
+      <th>Matching Users</th>
       <th>Score</th>
     </tr>
   </thead>
@@ -366,7 +366,7 @@ newObj.forEach(obj=>{
             modal nested scroll
               
      position="right center">
-       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+       <div ><Table  stripped bordered responsive variant="dark" size="sm">
   <thead>
     <tr>
       <th>Data</th>
@@ -394,7 +394,7 @@ newObj.forEach(obj=>{
             modal nested scroll
               
      position="right center">
-       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+       <div ><Table  stripped bordered responsive variant="dark" size="sm">
   <thead>
     <tr>
       <th>Data</th>
@@ -402,6 +402,8 @@ newObj.forEach(obj=>{
     </tr>
   </thead>
   <tbody>
+  <tr>
+        </tr>
     {average.map(item => {
       return (
         <tr key={item.data}>
@@ -422,7 +424,7 @@ newObj.forEach(obj=>{
             modal nested scroll
               
      position="right center">
-       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+       <div ><Table  stripped bordered responsive variant="dark" size="sm">
   <thead>
     <tr>
 
