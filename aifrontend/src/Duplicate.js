@@ -333,7 +333,7 @@ newObj.forEach(obj=>{
              
               {/* <tr> */}
               <tr>
-              <Popup trigger={<td data-th="Supplier Code"  >{best.length}</td>}
+              <Popup trigger={<td data-th="Supplier Code"  ><span> {best.length}</span></td>}
             
             modal nested scroll
               
@@ -361,7 +361,7 @@ newObj.forEach(obj=>{
                 <td data-th="Supplier Name">{">90%"}</td>
               </tr>
               <tr>
-              <Popup trigger={<td data-th="Supplier Code"  >{good.length}</td>}
+              <Popup trigger={<td data-th="Supplier Code"  ><span> {good.length}</span></td>}
             
             modal nested scroll
               
@@ -389,7 +389,7 @@ newObj.forEach(obj=>{
                 <td data-th="Supplier Name">{"90% - 75%"}</td>
               </tr>
               <tr>
-              <Popup trigger={<td data-th="Supplier Code"  >{average.length}</td>}
+              <Popup trigger={<td data-th="Supplier Code"  ><span> {average.length}</span></td>}
             
             modal nested scroll
               
@@ -417,7 +417,7 @@ newObj.forEach(obj=>{
                 <td data-th="Supplier Name">{"75% - 60%"}</td>
               </tr>
               <tr>
-              <Popup trigger={<td data-th="Supplier Code"  >{poor.length}</td>}
+              <Popup trigger={<td data-th="Supplier Code"  ><span> {poor.length}</span></td>}
             
             modal nested scroll
               
