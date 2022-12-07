@@ -33,7 +33,7 @@
   background-color: #fff;
   padding: 15px;
   border-radius: 5px;
-  padding-top: 60px;
+  padding-top: 110px;
 }
 
 .duplicateBox .left .content .header{
@@ -54,6 +54,28 @@
  font-weight: 400;
 }
 
+.duplicateBox .left .content .header input{
+  width: 105px;
+  height: 54px;
+}
+
+.duplicateBox .left .content .header input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.duplicateBox .left .content .header input::before {
+  content: 'Select files';
+  display: inline-block;
+  background-color: #ff4800;
+ border: 1px solid #ff4800;
+  border-radius: 5px;
+  padding: 15px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 10pt;
+  color: #fff;
+}
+
 .duplicateBox .right{
   background-color: #fff;
   padding: 15px;
@@ -67,7 +89,6 @@
 
 .duplicateBox .left .content h5{
  text-align: left;
- margin-top: 30px;
  margin-bottom: 15px;
  font-size: 16px;
 }
@@ -364,3 +385,35 @@
   }
 }
 
+#popup-root .popup-overlay {
+  background: rgba(0, 0, 0, 50%);
+  overflow: hidden;
+}
+
+#popup-root .popup-overlay .popup-content {
+  width: 60%;
+}
+
+#popup-root .popup-overlay .popup-content .table-responsive{
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 10px;
+}
+
+
+
+#popup-root .popup-overlay .popup-content .table-responsive th, #popup-root .popup-overlay .popup-content .table-responsive td {
+  border: 1px solid #efefef;
+  padding: 5px 15px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#popup-root .popup-overlay .popup-content .table-responsive thead th{
+  background-color: #ff4800;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 15px;
+  position: sticky;
+  top: 0px;
+}
