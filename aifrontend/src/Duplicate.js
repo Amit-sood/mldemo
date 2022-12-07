@@ -92,9 +92,12 @@ function Duplicate(props) {
   
     
     const handleReset =()=>{
-      console.log(responseData);
       
-    }
+      window.location.reload(false);
+
+      console.log("Request:"+reqData);
+    console.log('result is: ', JSON.stringify(responseData, null, 4));
+    };
    
  
     useEffect(()=>{
@@ -195,7 +198,7 @@ newObj.forEach(obj=>{
                 }
                 
                 }>
-                  <option>Selct Full Name</option>
+                  <option value={""}>Selct Full Name</option>
                   {data.map((option) => (
                     <option value={option["Full Name"]}>
                       {option["Full Name"]}
@@ -203,7 +206,7 @@ newObj.forEach(obj=>{
                   ))}
                 </select>
                 <select onChange={e => setFirstName(e.target.value) }>
-                  <option>Selct First Name</option>
+                  <option value={""}>Selct First Name</option>
                   {data.map((option) => (
                     <option value={option["First Name"]}>
                       {option["First Name"]}
@@ -212,7 +215,7 @@ newObj.forEach(obj=>{
                 </select>
 
                 <select onChange={e => setLastName(e.target.value) }>
-                  <option >Selct Last Name</option>
+                  <option value={""}>Selct Last Name</option>
                   {data.map((option) => (
                     <option value={option["Last Name"]}>
                       {option["Last Name"]}
@@ -221,14 +224,14 @@ newObj.forEach(obj=>{
                 </select>
 
                 <select onChange={e => setAddress(e.target.value) }>
-                  <option>Select Address</option>
+                  <option value={""}>Select Address</option>
                   {data.map((option) => (
                     <option value={option.Address}>{option.Address}</option>
                   ))}
                 </select>
 
                 <select onChange={e => setPhone(e.target.value) }>
-                  <option>Selct Phone</option>
+                  <option value={""}>Selct Phone</option>
                   {data.map((option) => (
                     <option value={option["Phone number"]}>
                       {option["Phone number"]}
@@ -237,7 +240,7 @@ newObj.forEach(obj=>{
                 </select>
 
                 <select onChange={e => setPostCode(e.target.value) }>
-                  <option>Selct Postcode</option>
+                  <option value={""}>Selct Postcode</option>
                   {data.map((option) => (
                     <option value={option["Postcode"]}>
                       {option["Postcode"]}
@@ -254,37 +257,37 @@ newObj.forEach(obj=>{
                   name="file-upload-field"
                   type="text"
                   className="input"
-                  placeholder="Enter Name"
+                  placeholder="Enter Name" onChange={e => setFullName(e.target.value) }
                 />
                 <input
                   name="file-upload-field"
                   type="text"
                   className="input"
-                  placeholder="Enter First Name"
+                  placeholder="Enter First Name" onChange={e => setFirstName(e.target.value) }
                 />
                 <input
                   name="file-upload-field"
                   type="text"
                   className="input"
-                  placeholder="Enter Last Name"
+                  placeholder="Enter Last Name" onChange={e => setLastName(e.target.value) }
                 />
                 <input
                   name="file-upload-field"
                   type="text"
                   className="input"
-                  placeholder="Enter Address "
+                  placeholder="Enter Address " onChange={e => setAddress(e.target.value) }
                 />
                 <input
                   name="file-upload-field"
                   type="text"
                   className="input"
-                  placeholder="Enter Phone"
+                  placeholder="Enter Phone" onChange={e => setPhone(e.target.value) }
                 />
                 <input
                   name="file-upload-field"
                   type="text"
                   className="input"
-                  placeholder="Enter Postcode"
+                  placeholder="Enter Postcode" onChange={e => setPostCode(e.target.value) }
                 />
               </div>
               <div className="bottom">
@@ -397,8 +400,8 @@ newObj.forEach(obj=>{
        <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
   <thead>
     <tr>
-      <th>Data</th>
-      <th>Score</th>
+      <th>User</th>
+      <th>Score (%)</th>
     </tr>
   </thead>
   <tbody>
@@ -406,7 +409,7 @@ newObj.forEach(obj=>{
       return (
         <tr key={item.data}>
           <td>{ item.data }</td>
-          <td>{ item.score*100 +"%" }</td>
+          <td>{ item.score*100  }</td>
         </tr>
       );
     })}
