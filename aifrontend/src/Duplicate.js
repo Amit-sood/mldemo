@@ -1,11 +1,14 @@
 import "./duplicate.css";
 import React, { useState } from "react";
 import * as XLSX from "xlsx";
-import axios from 'axios';
+import Popup from 'reactjs-popup';
+import Table from 'react-bootstrap/Table'
+import { useEffect } from "react";
+// import ReactTable from "react-table";  
 
 
 function Duplicate(props) {
-  const [columns, setColumns] = useState([]); //optional for now 
+  
   const [data, setData] = useState([]);
 
   const[fullName, setFullName] = useState([]);
@@ -15,11 +18,24 @@ function Duplicate(props) {
   const[phone, setPhone] = useState([]);
   const[postCode, setPostCode] = useState([]);
 
-  const [responseData, setResponseData] = useState();
+  const [responseData, setResponseData] = useState({results:[], score:[]});
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState('');
-  
-
+  let result ;
+ 
+  const [best,setBest] = useState([]);
+  const [good,setGood] = useState([]);
+  const [average,setAverage] = useState([]);
+  const [poor,setPoor] = useState([]);
+  const [btnClick,setBtnClick]= useState();
+  const [reqData,setReqData] = useState("");
+  const columns = [{  
+    Header: 'Data',  
+    accessor: 'data'  
+   },{  
+   Header: 'Score',  
+   accessor: 'score'  
+   }]  ;
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
@@ -68,69 +84,91 @@ function Duplicate(props) {
       }
     }
 
-    // prepare columns list from headers
-    //optional for now !!
-    const columns = headers.map((c) => ({
-      name: c,
-      selector: c,
-    }));
-
     setData(list);
-    setColumns(columns);
+
     console.log(list);
   };
-  let reqData= "";
-
-    reqData =reqData+" "+fullName+" "+firstName+" "+lastName+" "+address+" "+postCode+" "+phone;
+ 
   
     
+    const handleReset =()=>{
+      console.log(responseData);
+      
+    }
+   
  
+    useEffect(()=>{
+      
+        setReqData(fullName+" "+firstName+" "+lastName+" "+address+" "+postCode+" "+phone);
+        console.log("ReqData:"+reqData);
+       
+    },[fullName,firstName,lastName,address,phone,postCode,btnClick]);
+  useEffect(()=>{
+    console.log("Request:"+reqData);
+    console.log('result is: ', JSON.stringify(responseData, null, 4));
+
+    var newObj=[];
+responseData.results.forEach((element, index) => {
+
+
+  newObj.push({data: element,score: responseData.score[index]});
+  newObj.sort((a,b)=>b.score - a.score);
+  
+});
+
+
+newObj.forEach(obj=>{
+  if(obj.score >0.90)
+  {
+    setBest(best=>[...best,obj]);
+  }
+  else if(obj.score >0.75)
+  {
+    setGood(good=>[...good,obj]);
+  }
+  else if(obj.score >0.60)
+  {
+    setAverage(average=>[...average,obj]);
+  }
+  else
+  {
+    setPoor(poor=>[...poor,obj]);
+  }
+});
+
+  },[responseData]);
+    
   const handleClick = async () => {
+    setBtnClick(!btnClick);
+    setBest([]);
+    setGood([]);
+    setAverage([]);
+    setPoor([]);
 
     setIsLoading(true);
     try {
       const response = await fetch('http://localhost:5000/mandp', {
         method: 'POST',
-        body: JSON.stringify({"data":{reqData}}),
+        body: JSON.stringify({"data":reqData}),
         headers: {
           'Content-Type': 'text/plain'
-        },
+        }
       });
-      // var response;
-      // axios.post(`http://localhost:5000/mandp`, { reqData })
-      // .then(response => {
-      //   console.log(response);
-      //   console.log(response.data);
-      // })
+
       if (!response.ok) {
         throw new Error(`Error! status: ${response.status}`);
       }
 
-      // const result = await response.json();
-      setResponseData(await response.json());
-      console.log('request:', reqData);
-      console.log('result is: ', JSON.stringify(responseData, null, 4));
+      result = await response.json();
 
     } catch (err) {
       setErr(err.message);
     } finally {
       setIsLoading(false);
-      console.log('response:'+responseData.score);
+      setResponseData(result);
+        
     }
- 
-var newObj=[{}];
-responseData.results.forEach((element, index) => {
-  // obj[element] = responseData.score[index];
-  // console.log('obj:'+responseData.result[element]);
-
-  newObj.push({element: element, score: responseData.score[index]});
-  console.log(newObj);
-});
-
-
   };
-
- 
   return (
     <>
       <h1 className="duplicateHeading">
@@ -153,7 +191,9 @@ responseData.results.forEach((element, index) => {
               <div className="selectBox">
                 <h5>Select From The Data Uploaded </h5>
                 
-                <select onChange={e => setFullName(e.target.value)
+                <select onChange={e => {setFullName(e.target.value);
+                }
+                
                 }>
                   <option>Selct Full Name</option>
                   {data.map((option) => (
@@ -248,7 +288,7 @@ responseData.results.forEach((element, index) => {
                 />
               </div>
               <div className="bottom">
-                <button>Reset</button>
+                <button onClick={handleReset}>Reset</button>
                 <button onClick={handleClick}>Detect</button>
               </div>
             </div>
@@ -263,21 +303,118 @@ responseData.results.forEach((element, index) => {
                 <th>Accuracy %</th>
               </tr>
              
+              {/* <tr> */}
               <tr>
-                <td data-th="Supplier Code">32</td>
-                <td data-th="Supplier Name">4%</td>
+              <Popup trigger={<td data-th="Supplier Code"  >{best.length}</td>}
+            
+            modal nested scroll
+              
+     position="right center">
+       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {best.map(item => {
+      return (
+        <tr key={item.data}>
+          <td>{ item.data }</td>
+          <td>{ item.score*100+"%" }</td>
+        </tr>
+      );
+    })}
+  </tbody>
+</Table></div>
+      
+    </Popup>
+                <td data-th="Supplier Name">{">90%"}</td>
               </tr>
               <tr>
-                <td data-th="Supplier Code">32</td>
-                <td data-th="Supplier Name">4%</td>
+              <Popup trigger={<td data-th="Supplier Code"  >{good.length}</td>}
+            
+            modal nested scroll
+              
+     position="right center">
+       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {good.map(item => {
+      return (
+        <tr key={item.data}>
+          <td>{ item.data }</td>
+          <td>{ item.score*100+"%" }</td>
+        </tr>
+      );
+    })}
+  </tbody>
+</Table></div>
+      
+    </Popup>
+                <td data-th="Supplier Name">{"90% - 75%"}</td>
               </tr>
               <tr>
-                <td data-th="Supplier Code">32</td>
-                <td data-th="Supplier Name">4%</td>
+              <Popup trigger={<td data-th="Supplier Code"  >{average.length}</td>}
+            
+            modal nested scroll
+              
+     position="right center">
+       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {average.map(item => {
+      return (
+        <tr key={item.data}>
+          <td>{ item.data }</td>
+          <td>{ item.score*100+"%" }</td>
+        </tr>
+      );
+    })}
+  </tbody>
+</Table></div>
+      
+    </Popup>
+                <td data-th="Supplier Name">{"75% - 60%"}</td>
               </tr>
               <tr>
-                <td data-th="Supplier Code">32</td>
-                <td data-th="Supplier Name">4%</td>
+              <Popup trigger={<td data-th="Supplier Code"  >{poor.length}</td>}
+            
+            modal nested scroll
+              
+     position="right center">
+       <div ><Table  stripped bordered hover responsive variant="dark" size="sm">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {poor.map(item => {
+      return (
+        <tr key={item.data}>
+          <td>{ item.data }</td>
+          <td>{ item.score*100 +"%" }</td>
+        </tr>
+      );
+    })}
+  </tbody>
+</Table></div>
+      
+    </Popup>
+                <td data-th="Supplier Name">{"<60%"}</td>
               </tr>
             </tbody>
           </table>
