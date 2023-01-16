@@ -12,56 +12,56 @@ import {
 export const screenRenderInfo = [
   {
     iconName: faEquals,
-    title: "Matching & Pinning1",
+    title: "Matching & Pinning",
     description:
       "Solve duplicate records problem using machine learning in Matching & Pinning Process.",
     drawerOptions: "Dashboard",
   },
   {
     iconName: faChartGantt,
-    title: "Sentiment Analysis1",
+    title: "Sentiment Analysis",
     description:
       "Understand the sentiment of the customer and make informed business decisions.",
     drawerOptions: "Dashboard",
   },
   {
     iconName: faChartPie,
-    title: "Text Summarization1",
+    title: "Text Summarization",
     description:
       "Reduce the text size and create a summary of our textual data for business advantage.",
     drawerOptions: "Dashboard",
   },
   {
     iconName: faGlobe,
-    title: "Web Scrapping1",
+    title: "Web Scrapping",
     description:
       "Scrape data from any website at scale and accuracy using best in class open source technology.",
     drawerOptions: "Dashboard",
   },
   {
     iconName: faEquals,
-    title: "Matching & Pinning2",
+    title: "Matching & Pinning",
     description:
       "Solve duplicate records problem using machine learning in Matching & Pinning Process.",
     drawerOptions: "NLP",
   },
   {
     iconName: faChartGantt,
-    title: "Sentiment Analysis2",
+    title: "Sentiment Analysis",
     description:
       "Understand the sentiment of the customer and make informed business decisions.",
     drawerOptions: "NLP",
   },
   {
     iconName: faChartPie,
-    title: "Text Summarization2",
+    title: "Text Summarization",
     description:
       "Reduce the text size and create a summary of our textual data for business advantage.",
     drawerOptions: "NLP",
   },
   {
     iconName: faGlobe,
-    title: "Web Scrapping2",
+    title: "Web Scrapping",
     description:
       "Scrape data from any website at scale and accuracy using best in class open source technology.",
     drawerOptions: "NLP",
