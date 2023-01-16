@@ -226,6 +226,11 @@ nav{
   overflow: hidden;
 }
 
+.tab-c:nth-of-type(3), .tab-c:nth-of-type(4), .tab-c:nth-of-type(5){
+  opacity: 0;
+  pointer-events: none;
+}
+
 .tabs-v > .tab-c > .card {
   /* height: 90%; */
   overflow-x: hidden;
@@ -478,7 +483,7 @@ tabs-v > input[type="radio"]:nth-of-type(1):checked ~ .tab-c:nth-of-type(5) {
   transform: translate3d(0, -300%, 0);
 }
 
-.tabs-v > input[type="radio"]:nth-of-type(5):checked ~ .tab-c:nth-of-type(5) {
+.tabs-v > input[type="radio"]:nth-of-type(5):checked ~ .tab-c:nth-of-type(1) {
   -moz-transform: translate(0, -500%);
   -ms-transform: translate(0, -500%);
   -webkit-transform: translate(0, -500%);
@@ -522,15 +527,10 @@ tabs-v > input[type="radio"]:nth-of-type(1):checked ~ .tab-c:nth-of-type(5) {
   transform: translate3d(0, -200%, 0);
 }
 .tabs-v > input[type="radio"]:nth-of-type(5):checked ~ .tab-c:nth-of-type(5) {
-  -moz-transform: translate(0, -100%);
-  -ms-transform: translate(0, -100%);
-  -webkit-transform: translate(0, -100%);
-  transform: translate(0, -100%);
-  -moz-transform: translate3d(0, -100%, 0);
-  -ms-transform: translate3d(0, -100%, 0);
-  -webkit-transform: translate3d(0, -100%, 0);
-  transform: translate3d(0, -100%, 0);
+  transform: translate(0, 0%);
+  transform: translate3d(0, 0%, 0);
 }
+
 
 ::-webkit-scrollbar {
  width: 6px;

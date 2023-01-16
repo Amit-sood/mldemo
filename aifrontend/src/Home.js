@@ -19,16 +19,16 @@ export const Home = () => {
     if (data == "") {
       setDemostate("");
     }
-    if (data == "sentiment") {
+    if (data == "Sentiment Analysis") {
       setDemostate("demostate");
     }
-    if (data == "text") {
+    if (data == "Text Summarization") {
       setDemostate("demostate1");
     }
-    if (data == "web") {
+    if (data == "Web Scrapping") {
       setDemostate("demostate2");
     }
-    if (data == "auto") {
+    if (data == "Matching & Pinning") {
       setDemostate("demostate3");
     }
   };
@@ -47,7 +47,7 @@ export const Home = () => {
             {menuOption === drawerOptions && (
               <Card
                 icon={iconName}
-                onDemoClick={() => demoHandler("auto")}
+                onDemoClick={() => demoHandler(title)}
                 link="/duplicate"
                 title={title}
                 description={description}
